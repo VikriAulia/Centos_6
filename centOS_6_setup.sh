@@ -238,7 +238,7 @@ service dropbear restart
 chkconfig dropbear on
 
 # install vnstat gui
-cd /home/vps/public_html/
+cd /home/web/public_html/
 wget http://www.sqweek.com/sqweek/files/vnstat_php_frontend-1.5.1.tar.gz
 tar xf vnstat_php_frontend-1.5.1.tar.gz
 rm vnstat_php_frontend-1.5.1.tar.gz
