@@ -84,7 +84,7 @@ chkconfig vnstat on
 
 # install screenfetch
 cd
-wget https://raw.githubusercontent.com/KittyKatt/screenFetch/master/screenfetch-dev
+wget https://raw.githubusercontent.com/KittyKatt/screenFetch/master/screenfetch-dev --no-check-certificate
 mv screenfetch-dev /usr/bin/screenfetch
 chmod +x /usr/bin/screenfetch
 echo "clear" >> .bash_profile
