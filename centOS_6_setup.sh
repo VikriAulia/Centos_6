@@ -62,6 +62,7 @@ service php-fpm restart
 chkconfig nginx on
 chkconfig php-fpm on
 
+
 # install essential package
 yum -y install rrdtool screen iftop htop nmap bc nethogs openvpn vnstat ngrep mtr git zsh mrtg unrar rsyslog rkhunter mrtg net-snmp net-snmp-utils expect nano bind-utils
 yum -y groupinstall 'Development Tools'
@@ -91,17 +92,39 @@ echo "screenfetch" >> .bash_profile
 
 # install webserver
 cd
-wget -O /etc/nginx/nginx.conf "https://github.com/youree82/centos6/raw/master/nginx.conf"
-sed -i 's/www-data/nginx/g' /etc/nginx/nginx.conf
+#wget -O /etc/nginx/nginx.conf "https://github.com/youree82/centos6/raw/master/nginx.conf"
+#sed -i 's/www-data/nginx/g' /etc/nginx/nginx.conf
 mkdir -p /home/vps/public_html
 echo "<pre>Edited By Vikri Aulia. Original By youree82</pre>" > /home/vps/public_html/index.html
 echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
 rm /etc/nginx/conf.d/*
-wget -O /etc/nginx/conf.d/vps.conf "https://github.com/youree82/centos6/raw/master/vps.conf"
-sed -i 's/apache/nginx/g' /etc/php-fpm.d/www.conf
+#wget -O /etc/nginx/conf.d/vps.conf "https://github.com/youree82/centos6/raw/master/vps.conf"
+#sed -i 's/apache/nginx/g' /etc/php-fpm.d/www.conf
 chmod -R +rx /home/vps
 service php-fpm restart
 service nginx restart
+
+# Install mariadb
+cd 
+if [ "$OS" == "x86_64" ]; then
+echo -e "# MariaDB 10.0 CentOS repository list - created 2015-04-04 05:24 UTC
+# http://mariadb.org/mariadb/repositories/
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.0/centos6-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1" > /etc/yum.repos.d/MariaDB.repo
+else
+echo -e "# MariaDB 10.0 CentOS repository list - created 2015-04-04 05:24 UTC
+# http://mariadb.org/mariadb/repositories/
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.0/centos6-x86
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1" > /etc/yum.repos.d/MariaDB.repo
+fi
+yum -y install MariaDB-server MariaDB-client
+/etc/init.d/mysql start
 
 # install openvpn
 #cd /etc/openvpn/
@@ -242,12 +265,12 @@ service webmin restart
 chkconfig webmin on
 
 # install bmon
-if [ "$OS" == "x86_64" ]; then
-  wget -O /usr/bin/bmon "https://www.dropbox.com/s/cdmi2id7iuowl2j/bmon64"
-else
-  wget -O /usr/bin/bmon "https://www.dropbox.com/s/gvzmzi4kdgjc0vq/bmon"
-fi
-chmod +x /usr/bin/bmon
+#if [ "$OS" == "x86_64" ]; then
+#  wget -O /usr/bin/bmon "https://www.dropbox.com/s/cdmi2id7iuowl2j/bmon64"
+#else
+#  wget -O /usr/bin/bmon "https://www.dropbox.com/s/gvzmzi4kdgjc0vq/bmon"
+#fi
+#chmod +x /usr/bin/bmon
 
 # install PPTP VPN
 #yum install -y git
@@ -273,7 +296,7 @@ sed -i 's/auth.log/secure/g' user-login.sh
 chmod +x user-login.sh
 
 # cron
-echo "0 */6 * * * root reboot" >> /etc/cron.d/reboot
+echo "0 */24 * * * root reboot" >> /etc/cron.d/reboot
 echo "0 0 * * * root user-expire.sh" >> /etc/cron.d/user-expire
 service crond start
 chkconfig crond on
@@ -358,11 +381,11 @@ echo "Fail2Ban : [on]"  | tee -a log-install.txt
 echo "IPv6     : [off]"  | tee -a log-install.txt
 echo "Autolimit 2 bitvise per IP to all port (port 22, 143, 109, 110, 443, 1194, 7300 TCP/UDP)"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "Script Modified by Yuri Bhuana (fb.com/youree82, 0858 1500 2021)"  | tee -a log-install.txt
+echo "Edited by Vikri Aulia"  | tee -a log-install.txt
 echo "Thanks to Original Creator Kang Arie & Mikodemos" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Log Instalasi --> /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "VPS AUTO REBOOT TIAP 6 JAM, SILAHKAN REBOOT VPS ANDA !"  | tee -a log-install.txt
+echo "VPS AUTO REBOOT TIAP 24 JAM, SILAHKAN REBOOT VPS ANDA !"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "==========================================="  | tee -a log-install.txt
