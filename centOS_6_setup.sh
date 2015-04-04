@@ -29,16 +29,16 @@ service sshd restart
 yum -y install wget curl
 
 # setting repo
-wget https://www.dropbox.com/s/7ne1pjq74edbvg4/epel-release-6-8.noarch.rpm
-wget https://www.dropbox.com/s/bf58g8ztgcu2lju/remi-release-6.rpm
+wget http://mirror.dionipe.net/fedora/epel/6/i386/epel-release-6-8.noarch.rpm
+wget wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 rpm -Uvh epel-release-6-8.noarch.rpm
 rpm -Uvh remi-release-6.rpm
 
 if [ "$OS" == "x86_64" ]; then
-  wget https://www.dropbox.com/s/26whkcjyjwq5e4s/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+  wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
   rpm -Uvh rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
 else
-  wget https://www.dropbox.com/s/rlzuig8mlkayhk6/rpmforge-release-0.5.3-1.el6.rf.i686.rpm
+  wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.i686.rpm
   rpm -Uvh rpmforge-release-0.5.3-1.el6.rf.i686.rpm
 fi
 
