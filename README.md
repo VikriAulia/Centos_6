@@ -1,4 +1,4 @@
-# Centos_6
+# CentOS 6 WEB Server Auto Install
 
 #List Service:
 
