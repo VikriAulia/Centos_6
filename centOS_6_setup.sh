@@ -94,13 +94,13 @@ echo "screenfetch" >> .bash_profile
 cd
 #wget -O /etc/nginx/nginx.conf "https://github.com/youree82/centos6/raw/master/nginx.conf"
 #sed -i 's/www-data/nginx/g' /etc/nginx/nginx.conf
-mkdir -p /home/vps/public_html
-echo "<pre>Edited By Vikri Aulia. Original By youree82</pre>" > /home/vps/public_html/index.html
-echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
+mkdir -p /home/web/public_html
+echo "<pre>Edited By Vikri Aulia. Original By youree82</pre>" > /home/web/public_html/index.html
+echo "<?php phpinfo(); ?>" > /home/web/public_html/info.php
 rm /etc/nginx/conf.d/*
 #wget -O /etc/nginx/conf.d/vps.conf "https://github.com/youree82/centos6/raw/master/vps.conf"
 #sed -i 's/apache/nginx/g' /etc/php-fpm.d/www.conf
-chmod -R +rx /home/vps
+chmod -R +rx /home/web
 service php-fpm restart
 service nginx restart
 
