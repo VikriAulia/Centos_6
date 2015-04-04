@@ -21,9 +21,9 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 service sshd restart
 
 # disable ipv6
-#echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
-#sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
-#sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.d/rc.local
+echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
+sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.d/rc.local
 
 # install wget and curl
 yum -y install wget curl
@@ -92,14 +92,14 @@ echo "screenfetch" >> .bash_profile
 
 # install webserver
 cd
-#wget -O /etc/nginx/nginx.conf "https://github.com/youree82/centos6/raw/master/nginx.conf"
-#sed -i 's/www-data/nginx/g' /etc/nginx/nginx.conf
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/VikriAulia/Centos_6/master/nginx.conf"
+sed -i 's/www-data/nginx/g' /etc/nginx/nginx.conf
 mkdir -p /home/web/public_html
-echo "<pre>Edited By Vikri Aulia. Original By youree82</pre>" > /home/web/public_html/index.html
+echo "<pre>Edited By Vikri Aulia. Original By Kang Arie & Mikodemos </pre>" > /home/web/public_html/index.html
 echo "<?php phpinfo(); ?>" > /home/web/public_html/info.php
 rm /etc/nginx/conf.d/*
-#wget -O /etc/nginx/conf.d/vps.conf "https://github.com/youree82/centos6/raw/master/vps.conf"
-#sed -i 's/apache/nginx/g' /etc/php-fpm.d/www.conf
+wget -O /etc/nginx/conf.d/web.conf "https://raw.githubusercontent.com/VikriAulia/Centos_6/master/web.conf"
+sed -i 's/apache/nginx/g' /etc/php-fpm.d/www.conf
 chmod -R +rx /home/web
 service php-fpm restart
 service nginx restart
