@@ -155,6 +155,85 @@ echo "Refresh: 300
 Interval: 5
 RunAsDaemon: Yes
 Options[_]: growright, bits" > /etc/mrtg/mrtg.cfg
+echo "
+# CPU Graph
+
+Target[CPU]: .1.3.6.1.4.1.2021.10.1.5.1&.1.3.6.1.4.1.2021.10.1.5.2:public@127.0.0.1
+MaxBytes[CPU]: 100
+Unscaled[CPU]: dwmy
+Options[CPU]: gauge, growright, nopercent
+YLegend[CPU]: Load Average
+ShortLegend[CPU]: (%)
+LegendI[CPU]: Load Average 1 min
+LegendO[CPU]: Load Average 5 min
+Legend1[CPU]: Load Average 1 min
+Legend2[CPU]: Load Average 5 min
+Title[CPU]: CPU Load Average
+PageTop[CPU]: <h1>CPU Load Average</h1>
+
+"> /etc/mrtg/mrtg.cfg
+echo"
+# Memory Graph
+
+Target[mem]: .1.3.6.1.4.1.2021.4.6.0&.1.3.6.1.4.1.2021.4.4.0:public@127.0.0.1
+# total memory
+
+MaxBytes1[Mem]: 3922688
+# total swap
+
+MaxBytes2[Mem]: 4128764
+
+Unscaled[Mem]: dwmy
+Options[Mem]: gauge, growright
+YLegend[Mem]: Mem Free(Bytes)
+ShortLegend[Mem]: Bytes
+kilo[Mem]: 1024
+kMG[Mem]: k,M,G,T,P
+LegendI[Mem]: Real
+LegendO[Mem]: Swap
+Legend1[Mem]: Memory Free [MBytes]
+Legend2[Mem]: Swap Free [MBytes]
+Title[Mem]: Memory Free
+PageTop[Mem]: <H1>Memory Free</H1>
+"> /etc/mrtg/mrtg.cfg
+echo "
+# DiskUsage
+
+# specify the result of above for "MaxBytes" section
+
+Target[Disk]: .1.3.6.1.4.1.2021.9.1.7.1&.1.3.6.1.4.1.2021.9.1.7.1:public@127.0.0.1
+MaxBytes[Disk]: 15939004
+kMG[Disk]: k,M,G,T,P
+Unscaled[Disk]: dwmy
+Options[Disk]: gauge, absolute, growright, nopercent
+YLegend[Disk]: Disk Free(Bytes)
+ShortLegend[Disk]: Bytes
+LegendI[Disk]: / Disk Free [Bytes]
+LegendO[Disk]:
+Legend1[Disk]: / Disk Free [Bytes]
+Legend2[Disk]:
+Title[Disk]: Disk Free
+PageTop[Disk]: <H1>Disk Free</H1>
+
+"> /etc/mrtg/mrtg.cfg
+echo "
+# Process Count
+
+Target[httpd]: .1.3.6.1.4.1.2021.2.1.5.1&.1.3.6.1.4.1.2021.2.1.4.1:public@127.0.0.1
+MaxBytes[httpd]: 50
+Unscaled[httpd]: dwmy
+Options[httpd]: gauge, growright, nopercent
+YLegend[httpd]: Count
+ShortLegend[httpd]: proc(s).
+Title[httpd]: Httpd Processes
+LegendI[httpd]: Processes
+LegendO[httpd]:
+Legend1[httpd]: Httpd Processes
+Legend2[httpd]:
+PageTop[httpd]: <h1>Httpd Processes</h1>
+
+"> /etc/mrtg/mrtg.cfg
+
 for (( i=1 ; i <= 3 ; i++ )); do env LANG=C mrtg /etc/mrtg/mrtg.cfg; done
 indexmaker –-output=/home/web/public_html/mrtg/index.html /etc/mrtg/mrtg.cfg
 echo -e "*/5 * * * * env LANG=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg --logging /var/log/mrtg.log --lock-file /var/lock/mrtg/mrtg_l --confcache-file /var/lib/mrtg/mrtg.ok " > /etc/cron.d/mrtg 
