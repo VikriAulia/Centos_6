@@ -145,6 +145,9 @@ echo -e "ftpking" > /etc/vsftpd/chroot_list
 /etc/rc.d/init.d/vsftpd start 
 chkconfig vsftpd on 
 
+#install MRTG+MIBS
+wget -O /etc/snmp/snmpd.conf "https://raw.githubusercontent.com/VikriAulia/Centos_6/master/snmpd.conf"
+
 # install openvpn
 #cd /etc/openvpn/
 #wget --no-check-certificate -O ~/easy-rsa.tar.gz https://www.dropbox.com/s/6y3d5qx8kd6l7ah/2.2.2.tar.gz
