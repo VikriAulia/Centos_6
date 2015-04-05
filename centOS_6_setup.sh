@@ -128,8 +128,9 @@ yum -y install MariaDB-server MariaDB-client
 /etc/init.d/mysql start
 
 #Install phpmyadmin
-#yum -y install phpmyadmin
+yum -y install phpmyadmin
 #wget -O /etc/nginx/conf.d/phpmyadmin.conf "https://raw.githubusercontent.com/VikriAulia/Centos_6/master/phpmyadmin.conf"
+ln -s /usr/share/phpMyAdmin /home/web/public_html/phpmariadb
 #service php-fpm restart
 #service nginx restart
 
@@ -358,10 +359,10 @@ echo "Service"  | tee -a log-install.txt
 echo "-------"  | tee -a log-install.txt
 echo "OpenSSH  : 22, 143"  | tee -a log-install.txt
 echo "Dropbear : 109, 110, 443"  | tee -a log-install.txt
-echo "OpenVPN  : 1194 (client config : http://$MYIP:81/client.tar)"  | tee -a log-install.txt
-echo "badvpn   : badvpn-udpgw port 7300"  | tee -a log-install.txt
-echo "PPTP VPN  : Create User via Putty (echo "username pptpd password *" >> /etc/ppp/chap-secrets)"  | tee -a log-install.txt
-echo "Squid    : 80, 8080 (limit to IP SSH)"  | tee -a log-install.txt
+#echo "OpenVPN  : 1194 (client config : http://$MYIP:81/client.tar)"  | tee -a log-install.txt
+#echo "badvpn   : badvpn-udpgw port 7300"  | tee -a log-install.txt
+#echo "PPTP VPN  : Create User via Putty (echo "username pptpd password *" >> /etc/ppp/chap-secrets)"  | tee -a log-install.txt
+#echo "Squid    : 80, 8080 (limit to IP SSH)"  | tee -a log-install.txt
 echo "nginx    : 81"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Tools"  | tee -a log-install.txt
@@ -381,12 +382,13 @@ echo ""  | tee -a log-install.txt
 echo "Fitur lain"  | tee -a log-install.txt
 echo "----------"  | tee -a log-install.txt
 echo "Webmin   : http://$MYIP:10000/"  | tee -a log-install.txt
-echo "vnstat   : http://$MYIP:81/vnstat/ (Cek Bandwith)"  | tee -a log-install.txt
-echo "MRTG     : http://$MYIP:81/mrtg/"  | tee -a log-install.txt
+echo "vnstat   : http://$MYIP/vnstat/ (Cek Bandwith)"  | tee -a log-install.txt
+echo "MRTG     : http://$MYIP/mrtg/"  | tee -a log-install.txt
+echo "phpmyadmin        : http://$MYIP/phpmariadb" |tee -a log-install.txt
 echo "Timezone : Asia/Jakarta (GMT +7)"  | tee -a log-install.txt
 echo "Fail2Ban : [on]"  | tee -a log-install.txt
 echo "IPv6     : [off]"  | tee -a log-install.txt
-echo "Autolimit 2 bitvise per IP to all port (port 22, 143, 109, 110, 443, 1194, 7300 TCP/UDP)"  | tee -a log-install.txt
+#echo "Autolimit 2 bitvise per IP to all port (port 22, 143, 109, 110, 443, 1194, 7300 TCP/UDP)"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Edited by Vikri Aulia"  | tee -a log-install.txt
 echo "Thanks to Original Creator Kang Arie & Mikodemos" | tee -a log-install.txt
