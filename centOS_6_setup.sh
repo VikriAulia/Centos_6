@@ -137,7 +137,11 @@ yum -y install phpmyadmin
 #install vsftp
 yum -y install vsftpd
 wget -O /etc/vsftpd/vsftpd.conf "https://raw.githubusercontent.com/VikriAulia/Centos_6/master/vsftpd.conf"
-echo -e "root" > /etc/vsftpd/chroot_list 
+useradd ftpking
+passwd ftpking
+echo "raja"
+echo "raja"
+echo -e "ftpking" > /etc/vsftpd/chroot_list 
 /etc/rc.d/init.d/vsftpd start 
 chkconfig vsftpd on 
 
