@@ -128,7 +128,7 @@ yum -y install MariaDB-server MariaDB-client
 /etc/init.d/mysql start
 
 #Install phpmyadmin
-yum install phpmyadmin
+yum -y install phpmyadmin
 #wget -O /etc/nginx/conf.d/phpmyadmin.conf "https://raw.githubusercontent.com/VikriAulia/Centos_6/master/phpmyadmin.conf"
 #ln -s /usr/share/phpMyAdmin /home/web/public_html/phpmariadb
 #service php-fpm restart
