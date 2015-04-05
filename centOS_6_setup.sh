@@ -394,6 +394,9 @@ echo "Fitur lain"  | tee -a log-install.txt
 echo "----------"  | tee -a log-install.txt
 echo "Webmin   : http://$MYIP:10000/"  | tee -a log-install.txt
 echo "vnstat   : http://$MYIP/vnstat/ (Cek Bandwith)"  | tee -a log-install.txt
+echo "FTP      : ftp://$MYIP/ 
+        FTPuser: ftpking
+        ftpPass: raja ( ganti user ini )" |tee -a log-install.txt
 echo "MRTG     : http://$MYIP/mrtg/"  | tee -a log-install.txt
 echo "phpmyadmin        : http://$MYIP/phpmariadb" |tee -a log-install.txt
 echo "Timezone : Asia/Jakarta (GMT +7)"  | tee -a log-install.txt
