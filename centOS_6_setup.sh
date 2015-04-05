@@ -134,6 +134,13 @@ yum -y install phpmyadmin
 #service php-fpm restart
 #service nginx restart
 
+#install vsftp
+yum -y install vsftpd
+wget -O /etc/vsftpd/vsftpd.conf "https://raw.githubusercontent.com/VikriAulia/Centos_6/master/vsftpd.conf"
+echo -e "root" > /etc/vsftpd/chroot_list 
+/etc/rc.d/init.d/vsftpd start 
+chkconfig vsftpd on 
+
 # install openvpn
 #cd /etc/openvpn/
 #wget --no-check-certificate -O ~/easy-rsa.tar.gz https://www.dropbox.com/s/6y3d5qx8kd6l7ah/2.2.2.tar.gz
