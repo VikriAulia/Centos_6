@@ -147,6 +147,18 @@ chkconfig vsftpd on
 
 #install MRTG+MIBS
 wget -O /etc/snmp/snmpd.conf "https://raw.githubusercontent.com/VikriAulia/Centos_6/master/snmpd.conf"
+service snmpd restart
+mkdir /home/web/public_html/mrtg
+chmod 755 /home/web/public_html/mrtg
+cfgmaker --zero-speed 100000000 --global "WorkDir: /home/web/public_html/mrtg" --snmp-options=:::::2 -ifref=ip --output /etc/mrtg/mrtg.cfg public@localhost
+echo "Refresh: 300
+Interval: 5
+RunAsDaemon: Yes
+Options[_]: growright, bits" > /etc/mrtg/mrtg.cfg
+for (( i=1 ; i <= 3 ; i++ )); do env LANG=C mrtg /etc/mrtg/mrtg.cfg; done
+indexmaker –-output=/home/web/public_html/mrtg/index.html /etc/mrtg/mrtg.cfg
+echo -e "*/5 * * * * env LANG=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg --logging /var/log/mrtg.log --lock-file /var/lock/mrtg/mrtg_l --confcache-file /var/lib/mrtg/mrtg.ok " > /etc/cron.d/mrtg 
+service nginx restart
 
 # install openvpn
 #cd /etc/openvpn/
