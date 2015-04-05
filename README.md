@@ -10,6 +10,7 @@
 * vnstat;
 * fail2ban;
 * dropbear;
+* FTP;
 
 # Include Script
 
@@ -24,4 +25,4 @@
 
 * MRTG + MIBS;
 * phpmyadmin;
-* ftp;
+
